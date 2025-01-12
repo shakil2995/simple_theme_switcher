@@ -1,39 +1,105 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Simple Theme Switcher
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A lightweight Flutter package for easily switching between light and dark themes with minimal setup. Built with `flutter_bloc` for efficient state management, this package helps developers implement theme toggling quickly.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
 ## Features
+- Simple and intuitive theme management.
+- Toggle between light and dark themes.
+- Minimal configuration required.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+---
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add `simple_theme_switcher` to your `pubspec.yaml`:
+```yaml
+dependencies:
+  simple_theme_switcher: ^0.0.1
+```
+
+Run the following command:
+```bash
+flutter pub get
+```
+
+---
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### Step 1: Wrap Your App with `ThemeSwitcher`
+In your `main.dart` file, use `ThemeSwitcher` as the root widget of your app:
 
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:simple_theme_switcher/simple_theme_switcher.dart';
+
+void main() {
+  runApp(const ThemeSwitcher(child: MyApp()));
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const MyExampleApp();
+  }
+}
 ```
 
-## Additional information
+### Step 2: Toggle the Theme
+Use `ThemeManager` to toggle between light and dark themes:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+import 'package:flutter/material.dart';
+import 'package:simple_theme_switcher/simple_theme_switcher.dart';
+
+class MyExampleApp extends StatelessWidget {
+  const MyExampleApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Simple Theme Switcher Example'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            final currentTheme = ThemeManager().currentThemeMode;
+            ThemeManager().toggleTheme(
+              currentTheme == AppThemeMode.dark ? AppThemeMode.light : AppThemeMode.dark,
+            );
+          },
+          child: const Text('Toggle Theme'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+## API
+### **ThemeSwitcher**
+A widget that manages theme switching.
+```dart
+const ThemeSwitcher({required Widget child});
+```
+
+### **ThemeManager**
+Singleton class for managing themes.
+- `currentThemeMode` — Returns the current `AppThemeMode` (light or dark).
+- `toggleTheme(AppThemeMode themeMode)` — Switches the theme to the specified mode.
+
+---
+
+## Example
+A full working example is available in the `example/` directory.
+
+---
+
+## License
+This project is licensed under the MIT License.
+

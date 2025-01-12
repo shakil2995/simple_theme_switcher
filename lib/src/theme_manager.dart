@@ -16,15 +16,21 @@ class ThemeManager {
   void toggleTheme(AppThemeMode themeMode) {
     _themeCubit.toggleTheme(themeMode);
   }
+
+  // Method to get current theme mode
+  AppThemeMode get currentThemeMode =>
+      _themeCubit.state == ThemeCubit.lightTheme
+          ? AppThemeMode.light
+          : AppThemeMode.dark;
 }
 
 class ThemeCubit extends Cubit<ThemeData> {
-  ThemeCubit() : super(_lightTheme);
+  static final ThemeData lightTheme = ThemeData.light();
+  static final ThemeData darkTheme = ThemeData.dark();
 
-  static final ThemeData _lightTheme = ThemeData.light();
-  static final ThemeData _darkTheme = ThemeData.dark();
+  ThemeCubit() : super(lightTheme);
 
   void toggleTheme(AppThemeMode themeMode) {
-    emit(themeMode == AppThemeMode.light ? _lightTheme : _darkTheme);
+    emit(themeMode == AppThemeMode.light ? lightTheme : darkTheme);
   }
 }

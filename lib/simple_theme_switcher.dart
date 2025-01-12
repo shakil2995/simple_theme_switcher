@@ -1,4 +1,4 @@
 library simple_theme_switcher;
 
-export 'theme_manager.dart';
-export 'theme_switcher.dart';
+export 'src/theme_manager.dart';
+export 'src/theme_switcher.dart';

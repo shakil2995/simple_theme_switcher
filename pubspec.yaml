@@ -1,7 +1,7 @@
 name: simple_theme_switcher
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/shakil2995/simple_theme_switcher
 
 environment:
   sdk: ^3.5.3
@@ -21,7 +21,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter:
+# flutter: pubspec.yaml
 
   # To add assets to your package, add an assets section, like this:
   # assets:
