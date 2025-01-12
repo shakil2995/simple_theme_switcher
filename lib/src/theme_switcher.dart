@@ -4,8 +4,13 @@ import 'theme_manager.dart';
 
 class ThemeSwitcher extends StatelessWidget {
   final Widget child;
+  final Color seedColor;
 
-  const ThemeSwitcher({super.key, required this.child});
+  const ThemeSwitcher({
+    super.key,
+    required this.child,
+    this.seedColor = Colors.blue, // Default seed color
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +21,7 @@ class ThemeSwitcher extends StatelessWidget {
           return MaterialApp(
             theme: theme,
             home: child,
+            debugShowCheckedModeBanner: false,
           );
         },
       ),

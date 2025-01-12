@@ -9,3 +9,4 @@ dependencies:
     sdk: flutter
   simple_theme_switcher:
     path: ../ # Use relative path for local testing
+  cupertino_icons: ^1.0.8

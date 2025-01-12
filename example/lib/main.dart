@@ -26,6 +26,7 @@ class HomeScreen extends StatelessWidget {
               ThemeManager().currentThemeMode == AppThemeMode.light
                   ? AppThemeMode.dark
                   : AppThemeMode.light,
+              seedColor: Colors.teal, // Optional Seed color
             );
           },
           child: Text('Toggle Theme'),

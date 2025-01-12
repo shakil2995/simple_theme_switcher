@@ -4,33 +4,49 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 enum AppThemeMode { light, dark }
 
 class ThemeManager {
-  static final ThemeManager _instance = ThemeManager._();
+  static final ThemeManager _instance = ThemeManager._internal();
   factory ThemeManager() => _instance;
 
   final ThemeCubit _themeCubit = ThemeCubit();
 
-  ThemeManager._();
+  ThemeManager._internal();
 
   ThemeCubit get cubit => _themeCubit;
 
-  void toggleTheme(AppThemeMode themeMode) {
-    _themeCubit.toggleTheme(themeMode);
+  void toggleTheme(AppThemeMode themeMode, {Color? seedColor}) {
+    _themeCubit.toggleTheme(themeMode, seedColor: seedColor);
   }
 
-  // Method to get current theme mode
   AppThemeMode get currentThemeMode =>
-      _themeCubit.state == ThemeCubit.lightTheme
+      _themeCubit.state.brightness == Brightness.light
           ? AppThemeMode.light
           : AppThemeMode.dark;
 }
 
 class ThemeCubit extends Cubit<ThemeData> {
-  static final ThemeData lightTheme = ThemeData.light();
-  static final ThemeData darkTheme = ThemeData.dark();
+  static const Color defaultSeedColor = Colors.blue;
 
-  ThemeCubit() : super(lightTheme);
+  static ThemeData lightTheme(Color seedColor) {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+          seedColor: seedColor, brightness: Brightness.light),
+      useMaterial3: true,
+    );
+  }
 
-  void toggleTheme(AppThemeMode themeMode) {
-    emit(themeMode == AppThemeMode.light ? lightTheme : darkTheme);
+  static ThemeData darkTheme(Color seedColor) {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+          seedColor: seedColor, brightness: Brightness.dark),
+      useMaterial3: true,
+    );
+  }
+
+  ThemeCubit() : super(lightTheme(defaultSeedColor));
+
+  void toggleTheme(AppThemeMode themeMode, {Color? seedColor}) {
+    final color = seedColor ?? defaultSeedColor;
+    emit(
+        themeMode == AppThemeMode.light ? lightTheme(color) : darkTheme(color));
   }
 }
