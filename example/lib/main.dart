@@ -9,7 +9,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeSwitcher(
-      child: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      title: 'Theme Switcher Example',
+      child: HomeScreen(), // HomeScreen will be wrapped in MaterialApp
     );
   }
 }
@@ -18,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Theme Switcher Example')),
+      appBar: AppBar(title: const Text('Theme Switcher Example')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -29,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               seedColor: Colors.teal, // Optional Seed color
             );
           },
-          child: Text('Toggle Theme'),
+          child: const Text('Toggle Theme'),
         ),
       ),
     );
