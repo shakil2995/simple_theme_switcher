@@ -5,7 +5,7 @@ import 'theme_manager.dart';
 class ThemeSwitcher extends StatelessWidget {
   final Widget child;
 
-  const ThemeSwitcher({Key? key, required this.child}) : super(key: key);
+  const ThemeSwitcher({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

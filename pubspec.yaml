@@ -1,5 +1,5 @@
 name: simple_theme_switcher
-description: "A new Flutter package project."
+description: "Simple light or dark mode switcher using material theme"
 version: 0.0.1
 homepage: https://github.com/shakil2995/simple_theme_switcher
 

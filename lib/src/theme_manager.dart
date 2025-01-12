@@ -7,7 +7,7 @@ class ThemeManager {
   static final ThemeManager _instance = ThemeManager._();
   factory ThemeManager() => _instance;
 
-  ThemeCubit _themeCubit = ThemeCubit();
+  final ThemeCubit _themeCubit = ThemeCubit();
 
   ThemeManager._();
 
