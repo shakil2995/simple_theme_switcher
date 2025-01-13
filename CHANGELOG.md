@@ -1,3 +1,5 @@
+## 0.0.5
+- Updated to flutter 3.27.1
 ## 0.0.4
 - No changes
 ## 0.0.3

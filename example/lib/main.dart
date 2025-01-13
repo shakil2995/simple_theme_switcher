@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
               themeManager.currentThemeMode == AppThemeMode.light
                   ? AppThemeMode.dark
                   : AppThemeMode.light,
-              seedColor: Colors.yellow, // Optional seed color
+              seedColor: Colors.blue, // Optional seed color
             );
           },
           child: const Text('Toggle Theme'),
