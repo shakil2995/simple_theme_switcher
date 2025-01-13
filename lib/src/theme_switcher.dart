@@ -12,10 +12,24 @@ class STMaterialApp extends StatelessWidget {
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute;
   final List<NavigatorObserver> navigatorObservers;
   final String title;
+  final GenerateAppTitle? onGenerateTitle;
+  final ThemeData? theme;
+  final ThemeData? darkTheme;
+  final ThemeData? highContrastTheme;
+  final ThemeData? highContrastDarkTheme;
   final Locale? locale;
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+
   final Iterable<Locale> supportedLocales;
   final bool debugShowCheckedModeBanner;
+  final bool showPerformanceOverlay;
+  final bool checkerboardRasterCacheImages;
+  final bool checkerboardOffscreenLayers;
+  final bool showSemanticsDebugger;
+  final bool useInheritedMediaQuery;
+  final ScrollBehavior scrollBehavior;
+  final Color? color;
+  final bool shortcutsEnabled;
 
   const STMaterialApp({
     super.key,
@@ -28,10 +42,23 @@ class STMaterialApp extends StatelessWidget {
     this.onGenerateRoute,
     this.navigatorObservers = const <NavigatorObserver>[],
     this.title = '',
+    this.onGenerateTitle,
+    this.theme,
+    this.darkTheme,
+    this.highContrastTheme,
+    this.highContrastDarkTheme,
     this.locale,
     this.localizationsDelegates,
     this.supportedLocales = const <Locale>[Locale('en', 'US')],
     this.debugShowCheckedModeBanner = true,
+    this.showPerformanceOverlay = false,
+    this.checkerboardRasterCacheImages = false,
+    this.checkerboardOffscreenLayers = false,
+    this.showSemanticsDebugger = false,
+    this.useInheritedMediaQuery = false,
+    this.scrollBehavior = const MaterialScrollBehavior(),
+    this.color,
+    this.shortcutsEnabled = true,
   });
 
   @override
@@ -40,25 +67,32 @@ class STMaterialApp extends StatelessWidget {
       value: ThemeManager().cubit,
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {
-          if (child is MaterialApp) {
-            return child; // Use provided MaterialApp if already given
-          } else {
-            return MaterialApp(
-              navigatorKey: navigatorKey,
-              scaffoldMessengerKey: scaffoldMessengerKey,
-              routes: routes,
-              initialRoute: initialRoute,
-              onGenerateRoute: onGenerateRoute,
-              navigatorObservers: navigatorObservers,
-              title: title,
-              locale: locale,
-              localizationsDelegates: localizationsDelegates,
-              supportedLocales: supportedLocales,
-              debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-              theme: theme,
-              home: child, // Wrap non-MaterialApp children
-            );
-          }
+          return MaterialApp(
+            scrollBehavior: scrollBehavior,
+            navigatorKey: navigatorKey,
+            scaffoldMessengerKey: scaffoldMessengerKey,
+            routes: routes,
+            initialRoute: initialRoute,
+            onGenerateRoute: onGenerateRoute,
+            navigatorObservers: navigatorObservers,
+            title: title,
+            onGenerateTitle: onGenerateTitle,
+            locale: locale,
+            localizationsDelegates: localizationsDelegates,
+            supportedLocales: supportedLocales,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            showPerformanceOverlay: showPerformanceOverlay,
+            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+            showSemanticsDebugger: showSemanticsDebugger,
+            useInheritedMediaQuery: useInheritedMediaQuery,
+            theme: theme,
+            darkTheme: darkTheme,
+            highContrastTheme: highContrastTheme,
+            highContrastDarkTheme: highContrastDarkTheme,
+            color: color,
+            home: child,
+          );
         },
       ),
     );
