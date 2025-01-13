@@ -1,6 +1,6 @@
 # Simple Theme Switcher
 
-A lightweight Flutter package for easily switching between light and dark themes with minimal setup. Built with `flutter_bloc` for efficient state management, this package helps developers implement theme toggling quickly.
+A lightweight Flutter package for easily switching between light and dark themes with minimal setup. This package simplifies theme management, allowing developers to toggle themes efficiently.
 
 ---
 
@@ -16,7 +16,7 @@ A lightweight Flutter package for easily switching between light and dark themes
 Add `simple_theme_switcher` to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  simple_theme_switcher: ^0.0.1
+  simple_theme_switcher: ^latest
 ```
 
 Run the following command:
@@ -29,7 +29,7 @@ flutter pub get
 ## Usage
 
 ### Step 1: Wrap Your App with `STMaterialApp`
-In your `main.dart` file, use `STMaterialApp` as the root widget of your app:
+In your `main.dart` file, replace `MaterialApp` with `STMaterialApp`:
 
 ```dart
 import 'package:flutter/material.dart';
@@ -40,35 +40,38 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return const MyExampleApp();
+    return const HomeScreen();
   }
 }
-```
 
-### Step 2: Toggle the Theme
-Use `ThemeManager` to toggle between light and dark themes:
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:simple_theme_switcher/simple_theme_switcher.dart';
-
-class MyExampleApp extends StatelessWidget {
-  const MyExampleApp({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Simple Theme Switcher Example'),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        title: Text(
+          'Theme Switcher Example',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
+        ),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            final currentTheme = ThemeManager().currentThemeMode;
-            ThemeManager().toggleTheme(
-              currentTheme == AppThemeMode.dark ? AppThemeMode.light : AppThemeMode.dark,
+            final themeManager = ThemeManager();
+            themeManager.toggleTheme(
+              themeManager.currentThemeMode == AppThemeMode.light
+                  ? AppThemeMode.dark
+                  : AppThemeMode.light,
+              seedColor: Colors.yellow, // Optional seed color
             );
           },
           child: const Text('Toggle Theme'),
@@ -78,6 +81,10 @@ class MyExampleApp extends StatelessWidget {
   }
 }
 ```
+
+### Important Notes
+- **Do not** use both `MaterialApp` and `STMaterialApp` simultaneously. This will cause conflicts.
+- Simply replace `MaterialApp` with `STMaterialApp` and pass any required parameters.
 
 ---
 
@@ -90,8 +97,8 @@ const STMaterialApp({required Widget child});
 
 ### **ThemeManager**
 Singleton class for managing themes.
-- `currentThemeMode` — Returns the current `AppThemeMode` (light or dark).
-- `toggleTheme(AppThemeMode themeMode)` — Switches the theme to the specified mode.
+- `currentThemeMode` &mdash; Returns the current `AppThemeMode` (light or dark).
+- `toggleTheme(AppThemeMode themeMode, {Color? seedColor})` &mdash; Switches the theme to the specified mode. An optional `seedColor` parameter can be provided.
 
 ---
 
