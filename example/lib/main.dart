@@ -8,30 +8,28 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ThemeSwitcher(
-      debugShowCheckedModeBanner: false,
-      title: 'Theme Switcher Example',
-      child: HomeScreen(), // HomeScreen will be wrapped in MaterialApp
-    );
+    return HomeScreen();
   }
 }
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Theme Switcher Example')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            ThemeManager().toggleTheme(
-              ThemeManager().currentThemeMode == AppThemeMode.light
-                  ? AppThemeMode.dark
-                  : AppThemeMode.light,
-              seedColor: Colors.teal, // Optional Seed color
-            );
-          },
-          child: const Text('Toggle Theme'),
+    return ThemeSwitcher(
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Theme Switcher Example')),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              ThemeManager().toggleTheme(
+                ThemeManager().currentThemeMode == AppThemeMode.light
+                    ? AppThemeMode.dark
+                    : AppThemeMode.light,
+                seedColor: Colors.teal, // Optional Seed color
+              );
+            },
+            child: const Text('Toggle Theme'),
+          ),
         ),
       ),
     );
