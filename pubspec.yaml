@@ -1,6 +1,6 @@
 name: simple_theme_switcher
 description: "Simple light/dark mode switcher using material theme.Just wrap your App with STMaterialApp Widget and toggle it with a switch."
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/shakil2995/simple_theme_switcher
 
 environment:

@@ -1,3 +1,5 @@
+## 0.0.7
+- Added more comments , no code change.
 ## 0.0.6
 - Added more MaterialApp properties
 ## 0.0.5
