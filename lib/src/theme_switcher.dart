@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'theme_manager.dart';
 
-class ThemeSwitcher extends StatelessWidget {
+class STMaterialApp extends StatelessWidget {
   final Widget child;
   final Color seedColor;
   final GlobalKey<NavigatorState>? navigatorKey;
@@ -17,7 +17,7 @@ class ThemeSwitcher extends StatelessWidget {
   final Iterable<Locale> supportedLocales;
   final bool debugShowCheckedModeBanner;
 
-  const ThemeSwitcher({
+  const STMaterialApp({
     super.key,
     required this.child,
     this.seedColor = Colors.blue,

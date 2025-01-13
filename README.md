@@ -28,15 +28,15 @@ flutter pub get
 
 ## Usage
 
-### Step 1: Wrap Your App with `ThemeSwitcher`
-In your `main.dart` file, use `ThemeSwitcher` as the root widget of your app:
+### Step 1: Wrap Your App with `STMaterialApp`
+In your `main.dart` file, use `STMaterialApp` as the root widget of your app:
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_theme_switcher/simple_theme_switcher.dart';
 
 void main() {
-  runApp(const ThemeSwitcher(child: MyApp()));
+  runApp(const STMaterialApp(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -82,10 +82,10 @@ class MyExampleApp extends StatelessWidget {
 ---
 
 ## API
-### **ThemeSwitcher**
+### **STMaterialApp**
 A widget that manages theme switching.
 ```dart
-const ThemeSwitcher({required Widget child});
+const STMaterialApp({required Widget child});
 ```
 
 ### **ThemeManager**
