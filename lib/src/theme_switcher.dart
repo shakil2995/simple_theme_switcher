@@ -8,7 +8,7 @@ import 'theme_manager.dart';
 /// localization, routes, and other application-level configurations.
 class STMaterialApp extends StatelessWidget {
   /// The widget to display as the home screen of the application.
-  final Widget child;
+  final Widget? child;
 
   /// The color used as the seed for Material 3 dynamic color generation.
   final Color seedColor;
@@ -85,7 +85,7 @@ class STMaterialApp extends StatelessWidget {
   /// Creates an instance of [STMaterialApp] with the given properties.
   const STMaterialApp({
     super.key,
-    required this.child,
+    this.child,
     this.seedColor = Colors.blue,
     this.navigatorKey,
     this.scaffoldMessengerKey,
